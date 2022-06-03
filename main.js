@@ -48,7 +48,7 @@ function generateTraffic(N) {
     traffic.push(
       new Car(
         road.getLaneCenter(randomIntFromInterval(0, 3)),
-        randomIntFromInterval(899900, 999900),
+        randomIntFromInterval(899900, 999800),
         30,
         50,
         "DUMMY",

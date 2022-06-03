@@ -22,6 +22,8 @@ if (localStorage.getItem("bestBrain")) {
 
 const traffic = generateTraffic(500);
 
+let damageCounter = 0;
+
 animate();
 
 function save() {
@@ -65,7 +67,17 @@ function animate(time) {
   for (let i = 0; i < cars.length; i++) {
     cars[i].update(road.borders, traffic);
   }
-  bestCar = cars.find((car) => car.y === Math.min(...cars.map((car) => car.y)));
+  bestCar = cars.find((car) => {
+    return car.y === Math.min(...cars.map((car) => car.y));
+  });
+  if (bestCar.damaged) {
+    damageCounter++;
+    if (damageCounter === 100) {
+      window.location.reload();
+    }
+    console.log("damaged");
+    save();
+  }
 
   carCanvas.height = window.innerHeight;
   networkCanvas.height = window.innerHeight;

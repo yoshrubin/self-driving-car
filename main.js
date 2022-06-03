@@ -75,7 +75,7 @@ function animate(time) {
 
   if (bestCar.damaged) {
     damageCounter++;
-    if (damageCounter === 500) {
+    if (damageCounter === 250) {
       window.location.reload();
     }
     const storedLongestDistance = JSON.parse(

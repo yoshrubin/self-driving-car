@@ -20,15 +20,7 @@ if (localStorage.getItem("bestBrain")) {
   }
 }
 
-const traffic = [
-  new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2),
-  new Car(road.getLaneCenter(0), -300, 30, 50, "DUMMY", 2),
-  new Car(road.getLaneCenter(2), -300, 30, 50, "DUMMY", 2),
-  new Car(road.getLaneCenter(0), -500, 30, 50, "DUMMY", 2),
-  new Car(road.getLaneCenter(1), -500, 30, 50, "DUMMY", 2),
-  new Car(road.getLaneCenter(1), -700, 30, 50, "DUMMY", 2),
-  new Car(road.getLaneCenter(2), -700, 30, 50, "DUMMY", 2),
-];
+const traffic = generateTraffic(500);
 
 animate();
 
@@ -43,9 +35,26 @@ function discard() {
 function generateCars(N) {
   const cars = [];
   for (let i = 0; i < N; i++) {
-    cars.push(new Car(road.getLaneCenter(1), 100, 30, 50, "AI"));
+    cars.push(new Car(road.getLaneCenter(1), 999900, 30, 50, "AI"));
   }
   return cars;
+}
+
+function generateTraffic(N) {
+  const traffic = [];
+  for (let i = 0; i < N; i++) {
+    traffic.push(
+      new Car(
+        road.getLaneCenter(randomIntFromInterval(0, 3)),
+        randomIntFromInterval(899900, 999900),
+        30,
+        50,
+        "DUMMY",
+        randomIntFromInterval(0.5, 2.5)
+      )
+    );
+  }
+  return traffic;
 }
 
 function animate(time) {

@@ -27,10 +27,12 @@ let damageCounter = 0;
 animate();
 
 function save() {
+  localStorage.setItem("longestDistance", JSON.stringify(bestCar.y));
   localStorage.setItem("bestBrain", JSON.stringify(bestCar.brain));
 }
 
 function discard() {
+  localStorage.removeItem("longestDistance");
   localStorage.removeItem("bestBrain");
 }
 
@@ -52,7 +54,7 @@ function generateTraffic(N) {
         30,
         50,
         "DUMMY",
-        randomIntFromInterval(0.5, 2.5)
+        randomIntFromInterval(1, 3)
       )
     );
   }
@@ -72,10 +74,15 @@ function animate(time) {
   });
   if (bestCar.damaged) {
     damageCounter++;
-    if (damageCounter === 100) {
+    if (damageCounter === 500) {
       window.location.reload();
     }
-    save();
+    const storedLongestDistance = JSON.parse(
+      localStorage.getItem("longestDistance")
+    );
+    if (!storedLongestDistance || bestCar.y < storedLongestDistance) {
+      save();
+    }
   }
 
   carCanvas.height = window.innerHeight;

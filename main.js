@@ -75,7 +75,6 @@ function animate(time) {
     if (damageCounter === 100) {
       window.location.reload();
     }
-    console.log("damaged");
     save();
   }
 

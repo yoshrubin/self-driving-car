@@ -72,6 +72,7 @@ function animate(time) {
   bestCar = cars.find((car) => {
     return car.y === Math.min(...cars.map((car) => car.y));
   });
+
   if (bestCar.damaged) {
     damageCounter++;
     if (damageCounter === 500) {
